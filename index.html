@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>VayuSuchak — Real-Time Airfare Price Index for India | SIH 2026</title>
+  
+  <!-- SEO Best Practices -->
+  <meta name="description" content="VayuSuchak is an India-focused airfare intelligence platform built by Chill Coders for Smart India Hackathon 2026 (SIH26056), designed for real-time airfare monitoring, statistical normalization, anomaly detection, and CPI augmentation under MoSPI.">
+  <meta name="keywords" content="VayuSuchak, Smart India Hackathon 2026, SIH26056, MoSPI, Airfare Price Index, CPI Augmentation, Chill Coders, Aviation Intelligence">
+  <meta name="author" content="Chill Coders">
+  <link rel="canonical" href="https://air-fare-index-phi.vercel.app/">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="VayuSuchak — Real-Time Airfare Price Index for India">
+  <meta property="og:description" content="Real-time airfare monitoring, statistical yield curves, anomaly detection, and CPI augmentation for the Ministry of Statistics and Programme Implementation (MoSPI).">
+  <meta property="og:image" content="/assets/dashboard_main.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Oswald, IBM Plex Sans, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       STICKY RAIL NAVIGATION
+       ========================================================================== -->
+  <header class="rail" id="topRail">
+    <div class="rail-inner">
+      <a href="#hero" class="rail-brand" aria-label="VayuSuchak Home">
+        <img src="/assets/vayusuchak_logo.png" alt="VayuSuchak Logo" class="rail-brand-logo">
+        <div class="rail-brand-text">
+          <span class="rail-brand-name">VAYUSUCHAK</span>
+          <span class="rail-brand-sub">SIH 2026 · MoSPI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#team" class="nav-link"><span class="n">01</span> Team</a>
+        <a href="#system" class="nav-link"><span class="n">02</span> System</a>
+        <a href="#problem" class="nav-link"><span class="n">03</span> Problem</a>
+        <a href="#solution" class="nav-link"><span class="n">04</span> Solution</a>
+        <a href="#architecture" class="nav-link"><span class="n">05</span> Architecture</a>
+        <a href="#innovation" class="nav-link"><span class="n">06</span> Innovation</a>
+        <a href="#casestudy" class="nav-link"><span class="n">07</span> Case Study</a>
+        <a href="#impact" class="nav-link"><span class="n">08</span> Impact</a>
+      </nav>
+
+      <!-- Action Buttons & Status -->
+      <div class="rail-actions">
+        <div class="badge badge-green" style="padding: 4px 10px; font-size: 9.5px;">
+          <span class="pulse-dot"></span> Live
+        </div>
+        <a href="https://air-fare-index-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-app" title="Launch Deployed Application">
+          View Live App
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+        <a href="https://github.com/Arshu168/VayuSuchak" target="_blank" rel="noopener noreferrer" class="btn-github" title="Inspect Source Code">
+          GitHub
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="rail-toggle" aria-label="Toggle navigation drawer" aria-expanded="false">
+        MENU
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-nav-links">
+      <a href="#team" class="mobile-nav-link"><span>01 The Team</span> <span>→</span></a>
+      <a href="#system" class="mobile-nav-link"><span>02 System in Action</span> <span>→</span></a>
+      <a href="#problem" class="mobile-nav-link"><span>03 The Problem</span> <span>→</span></a>
+      <a href="#solution" class="mobile-nav-link"><span>04 The Solution</span> <span>→</span></a>
+      <a href="#architecture" class="mobile-nav-link"><span>05 Architecture</span> <span>→</span></a>
+      <a href="#innovation" class="mobile-nav-link"><span>06 Innovation</span> <span>→</span></a>
+      <a href="#casestudy" class="mobile-nav-link"><span>07 Case Study</span> <span>→</span></a>
+      <a href="#impact" class="mobile-nav-link"><span>08 Impact</span> <span>→</span></a>
+    </div>
+    <div class="mobile-nav-actions">
+      <a href="https://air-fare-index-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="justify-content: center;">
+        View Live Application ↗
+      </a>
+      <a href="https://github.com/Arshu168/VayuSuchak" target="_blank" rel="noopener noreferrer" class="btn-outline" style="justify-content: center; background: #FFFFFF;">
+        GitHub Repository
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <!-- Top Gov/Hackathon Bar -->
+          <div class="hero-top-bar">
+            <div class="hero-eyebrow">
+              <span>SMART INDIA HACKATHON 2026</span>
+              <span class="dot">·</span>
+              <span>PROBLEM CODE: SIH26056</span>
+              <span class="dot">·</span>
+              <span>THEME: SMART AUTOMATION</span>
+            </div>
+            <div class="hero-top-ticks">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Hero Body -->
+          <div class="hero-content">
+            <div class="hero-title-area">
+              <div class="hero-title-group">
+                <div class="lbl lbl-orange" style="margin-bottom: 6px;">NATIONAL AIRFARE INTELLIGENCE PLATFORM</div>
+                <h1>VayuSuchak <span class="hero-devanagari">(वायुसूचक)</span></h1>
+                <p class="hero-subtitle">Real-Time Airfare Price Index for India</p>
+              </div>
+
+              <!-- Ministry & Team Emblem Card -->
+              <div class="hero-emblem-badge" style="max-width: 400px;">
+                <img src="/assets/emblem_of_india.svg" alt="Emblem of India" class="gov-emblem">
+                <div class="hero-emblem-meta">
+                  <span class="hero-emblem-ministry">Ministry of Statistics & Programme Implementation</span>
+                  <span class="hero-emblem-sub">Government of India • SIH26056</span>
+                </div>
+                <img src="/assets/chill_coders_logo.png" alt="Chill Coders Logo" style="height: 28px; width: auto; background: #FFFFFF; padding: 2px 6px; border-radius: var(--r-sm); margin-left: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              </div>
+            </div>
+
+            <!-- Supporting Text -->
+            <p class="hero-supporting-text">
+              An India-focused airfare intelligence platform that automatically collects dynamic fare observations across carriers and booking windows, standardizes them, detects statistical anomalies, and converts them into an explainable airfare price index designed for CPI augmentation.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="hero-cta-row">
+              <a href="#system" class="btn-primary">
+                Explore VayuSuchak
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </a>
+              <a href="https://air-fare-index-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                View Live Dashboard
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+              <a href="https://github.com/Arshu168/VayuSuchak" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                Source Code
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Spec Strip -->
+          <div class="spec-strip">
+            <div class="spec-cell">
+              <span class="lbl">PROBLEM STATEMENT</span>
+              <b>SIH26056</b>
+            </div>
+            <div class="spec-cell">
+              <span class="lbl">THEME</span>
+              <b>Smart Automation</b>
+            </div>
+            <div class="spec-cell">
+              <span class="lbl">MINISTRY</span>
+              <b>MoSPI, Govt of India</b>
+            </div>
+            <div class="spec-cell">
+              <span class="lbl">LEAD-TIME WINDOWS</span>
+              <b>T-0 to T-30+ Days</b>
+            </div>
+            <div class="spec-cell">
+              <span class="lbl">AUDIT LINEAGE</span>
+              <b>SHA-256 Hashed</b>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Floating Product Showcase: Dual Light & Dark VayuSuchak Dashboard -->
+        <div class="hero-product-frame">
+          <div class="product-chrome">
+            <div class="chrome-dots">
+              <i></i><i></i><i></i>
+            </div>
+            <div class="chrome-url-bar">
+              <span class="secure-icon">🔒</span>
+              <span>https://air-fare-index-phi.vercel.app/ — VayuSuchak Dashboard (Light & Dark UI)</span>
+            </div>
+            <div class="dashboard-view-toggles">
+              <button type="button" class="dash-toggle-btn active" data-view="dual" id="btnViewDual">⚡ Side-by-Side</button>
+              <button type="button" class="dash-toggle-btn" data-view="light" id="btnViewLight">☀️ Light</button>
+              <button type="button" class="dash-toggle-btn" data-view="dark" id="btnViewDark">🌙 Dark</button>
+            </div>
+          </div>
+          <div class="product-image-container">
+            <div class="dashboard-dual-content view-dual" id="heroDualContainer">
+              <!-- Light Mode Card -->
+              <div class="dashboard-half-card light-pane" data-zoomable data-zoom-src="/assets/dashboard_light.png" data-zoom-caption="VayuSuchak Live Dashboard — Light Mode">
+                <div class="half-card-tag">
+                  <span class="pulse-dot"></span> ☀️ LIGHT MODE
+                </div>
+                <img src="/assets/dashboard_light.png" alt="VayuSuchak Live Dashboard Light Theme" class="half-screenshot" loading="eager">
+              </div>
+
+              <!-- Dark Mode Card -->
+              <div class="dashboard-half-card dark-pane" data-zoomable data-zoom-src="/assets/dashboard_dark.png" data-zoom-caption="VayuSuchak Live Dashboard — Dark Mode">
+                <div class="half-card-tag dark-tag">
+                  <span class="pulse-dot"></span> 🌙 DARK MODE
+                </div>
+                <img src="/assets/dashboard_dark.png" alt="VayuSuchak Live Dashboard Dark Theme" class="half-screenshot" loading="eager">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Story Statement & Pipeline Strip -->
+        <div class="hero-story-strip">
+          <div class="story-lead">
+            <div class="story-lead-sub">FROM DYNAMIC FLIGHT FARES TO STATISTICAL PRICE INTELLIGENCE</div>
+            <h2 class="story-lead-main">Transforming High-Frequency Airline Observations into <span>Auditable Price Metrics</span></h2>
+          </div>
+          <div class="pipeline-flow">
+            <div class="pipeline-step">
+              <span class="step-num">STAGE 01</span>
+              <div class="step-name">Airfare Data</div>
+              <div class="step-desc">High-frequency scraping across OTAs, direct carriers, and route corridors.</div>
+              <div class="pipeline-arrow">→</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">STAGE 02</span>
+              <div class="step-name">Normalization</div>
+              <div class="step-desc">Deconstruction into base fare, fuel surcharges, taxes, and lead-time buckets.</div>
+              <div class="pipeline-arrow">→</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">STAGE 03</span>
+              <div class="step-name">Statistical Index</div>
+              <div class="step-desc">Superlative Fisher Ideal, Laspeyres, and Jevons econometric aggregations.</div>
+              <div class="pipeline-arrow">→</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">STAGE 04</span>
+              <div class="step-name">Inflation Insight</div>
+              <div class="step-desc">High-frequency transport index series designed for MoSPI CPI augmentation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 01: THE TEAM (CHILL CODERS)
+         ========================================================================== -->
+    <section class="board" id="team">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">01</span>
+          <span class="name">THE TEAM</span>
+          <span class="fill"></span>
+          <span class="tag">06 MEMBERS · CHILL CODERS</span>
+        </div>
+
+        <div class="board-head">
+          <div class="team-brand-header">
+            <div class="team-identity-row">
+              <img src="/assets/chill_coders_logo.png" alt="Chill Coders Logo" class="team-logo-img">
+              <div class="team-identity-text">
+                <span class="subhead" style="margin: 0;">SMART INDIA HACKATHON 2026</span>
+                <span class="lbl lbl-blue" style="font-weight: 700; font-size: 12px; letter-spacing: 0.14em;">TEAM CHILL CODERS</span>
+              </div>
+            </div>
+            <div class="badge badge-orange" style="font-size: 11px;">
+              <span class="pulse-dot"></span> 06 CORE MEMBERS
+            </div>
+          </div>
+          <h2>SIX MEMBERS. ONE ENGINEERING CHALLENGE.</h2>
+          <p class="lead">Building VayuSuchak for smarter airfare intelligence. A multidisciplinary engineering squad from Chill Coders dedicated to solving high-frequency price measurement for India's aviation sector.</p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 01: Arshad Ahmed S -->
+          <div class="team-card">
+            <div class="team-card-accent"></div>
+            <div class="team-card-top">
+              <span>TEAM MEMBER 01</span>
+              <span class="team-role-pill">DEVELOPMENT</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-portrait">
+                <img src="/assets/team_01_arshad.png" alt="Arshad Ahmed S - Prototype & Website Developer" loading="lazy">
+              </div>
+              <div class="team-meta">
+                <h3 class="team-name">Arshad Ahmed S</h3>
+                <div class="team-role-text">Prototype & Website Developer</div>
+                <div class="team-meta-tag">Full-Stack & Scraping Engine</div>
+              </div>
+            </div>
+            <div class="team-card-note">Core engineer behind scraper pipeline, API & React frontend</div>
+          </div>
+
+          <!-- Member 02: Rohit D -->
+          <div class="team-card">
+            <div class="team-card-accent"></div>
+            <div class="team-card-top">
+              <span>TEAM MEMBER 02</span>
+              <span class="team-role-pill">LEADERSHIP</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-portrait">
+                <img src="/assets/team_02_rohith.png" alt="Rohit D - Team Leader" loading="lazy">
+              </div>
+              <div class="team-meta">
+                <h3 class="team-name">Rohit D</h3>
+                <div class="team-role-text">Team Leader</div>
+                <div class="team-meta-tag">Architecture & Coordination</div>
+              </div>
+            </div>
+            <div class="team-card-note">Leading project vision, system integration & SIH submission</div>
+          </div>
+
+          <!-- Member 03: Sanjay Kumar M -->
+          <div class="team-card">
+            <div class="team-card-accent"></div>
+            <div class="team-card-top">
+              <span>TEAM MEMBER 03</span>
+              <span class="team-role-pill">PRESENTATION</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-portrait">
+                <img src="/assets/team_03_sanjay.jpg" alt="Sanjay Kumar - Pitch Deck & Presentation" loading="lazy">
+              </div>
+              <div class="team-meta">
+                <h3 class="team-name">Sanjay Kumar</h3>
+                <div class="team-role-text">Pitch Deck & Presentation</div>
+                <div class="team-meta-tag">Technical Strategy & Deck</div>
+              </div>
+            </div>
+            <div class="team-card-note">Authoring problem alignment, technical slides & pitch deck</div>
+          </div>
+
+          <!-- Member 04: Sowparnika P -->
+          <div class="team-card">
+            <div class="team-card-accent"></div>
+            <div class="team-card-top">
+              <span>TEAM MEMBER 04</span>
+              <span class="team-role-pill">PRESENTATION</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-portrait">
+                <img src="/assets/team_04_sowparnika.jpg" alt="Sowparnika P - Pitch Deck & Presentation" loading="lazy">
+              </div>
+              <div class="team-meta">
+                <h3 class="team-name">Sowparnika P</h3>
+                <div class="team-role-text">Pitch Deck & Presentation</div>
+                <div class="team-meta-tag">Domain Research & Analysis</div>
+              </div>
+            </div>
+            <div class="team-card-note">Evaluating MoSPI statistical frameworks & jury defense</div>
+          </div>
+
+          <!-- Member 05: Vishnumithran -->
+          <div class="team-card">
+            <div class="team-card-accent"></div>
+            <div class="team-card-top">
+              <span>TEAM MEMBER 05</span>
+              <span class="team-role-pill">PRESENTATION</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-portrait">
+                <img src="/assets/team_05_vishnumithran.png" alt="Vishnumithran - Pitch Deck & Presentation" loading="lazy">
+              </div>
+              <div class="team-meta">
+                <h3 class="team-name">Vishnumithran</h3>
+                <div class="team-role-text">Pitch Deck & Presentation</div>
+                <div class="team-meta-tag">Jury Presentation & Benchmarks</div>
+              </div>
+            </div>
+            <div class="team-card-note">Benchmarking algorithmic transparency & defense communication</div>
+          </div>
+
+          <!-- Member 06: Shyma Fathima -->
+          <div class="team-card">
+            <div class="team-card-accent"></div>
+            <div class="team-card-top">
+              <span>TEAM MEMBER 06</span>
+              <span class="team-role-pill">DOCUMENTATION</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-portrait">
+                <img src="/assets/team_06_shyma.jpg" alt="Shyma Fathima - Case Study & Video Docs" loading="lazy">
+              </div>
+              <div class="team-meta">
+                <h3 class="team-name">Shyma Fathima</h3>
+                <div class="team-role-text">Case Study & Video Docs</div>
+                <div class="team-meta-tag">Evaluation Media & Research</div>
+              </div>
+            </div>
+            <div class="team-card-note">Directing case-study narrative, auditor video & documentation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 02: SYSTEM IN ACTION (ACTUAL SCREENSHOTS SHOWCASE)
+         ========================================================================== -->
+    <section class="board" id="system">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">02</span>
+          <span class="name">SYSTEM IN ACTION</span>
+          <span class="fill"></span>
+          <span class="tag">REAL-TIME AIRFARE INTELLIGENCE</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">ACTUAL PRODUCTION SCREENSHOTS</span>
+          <h2>EXPLORE THE LIVE VAYUSUCHAK INTERFACE</h2>
+          <p class="lead">An unedited editorial tour through the real VayuSuchak application currently deployed and running. Click any module to inspect actual UI data, charts, and operational controls.</p>
+        </div>
+
+        <div class="system-showcase">
+          <!-- Interactive Tab Buttons -->
+          <div class="system-tabs-bar" role="tablist">
+            <button class="tab-btn active" data-tab="pane-national" role="tab">01 National Airfare Index</button>
+            <button class="tab-btn" data-tab="pane-routes" role="tab">02 Route-Level Airfare Movement & Directory</button>
+            <button class="tab-btn" data-tab="pane-leadtime" role="tab">03 Lead-Time Yield Curves</button>
+            <button class="tab-btn" data-tab="pane-anomalies" role="tab">04 Statistical Anomaly</button>
+            <button class="tab-btn" data-tab="pane-dashboard" role="tab">05 Dashboard</button>
+          </div>
+
+          <!-- Tab Pane 1: National Airfare Index -->
+          <div class="system-pane active" id="pane-national">
+            <div class="gallery-editorial-card">
+              <div class="editorial-img-wrap" data-zoomable data-zoom-src="/assets/dashboard_dual.png" data-zoom-caption="VayuSuchak Main Dashboard — Dual View (Light Theme & Dark Theme)">
+                <img src="/assets/dashboard_dual.png" alt="National Airfare Index Dashboard in Light and Dark Modes" loading="lazy">
+              </div>
+              <div class="editorial-details">
+                <span class="badge badge-blue">MODULE 01 · NATIONAL INDEX (DUAL THEME)</span>
+                <h3>High-Frequency Aggregate Index</h3>
+                <p>The primary command center tracking India's national airfare movement with superlative Fisher Ideal aggregation, multi-tier lead time breakdowns, and real-time corridor contribution metrics. Available in both high-visibility Light and Dark modes.</p>
+                <ul class="callout-list">
+                  <li class="callout-item">
+                    <span>⚡</span>
+                    <div><b>Live Index Tracking:</b> Sub-daily index recalculation with baseline comparison against MoSPI target dates.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>📊</span>
+                    <div><b>Lead-Time Dispersion:</b> Visual spreads between instant (T-0) departure fares and advance (T-30+) bookings.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>🛡️</span>
+                    <div><b>Validation Status:</b> Continuous SHA-256 integrity validation on incoming scraper streams.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 2: Route-Level Airfare Movement & Directory (1st Image) -->
+          <div class="system-pane" id="pane-routes">
+            <div class="gallery-editorial-card">
+              <div class="editorial-img-wrap" data-zoomable data-zoom-src="/assets/route_directory_dark.png" data-zoom-caption="02 · Route-Level Airfare Movement & Directory">
+                <img src="/assets/route_directory_dark.png" alt="Route-Level Airfare Movement and Directory" loading="lazy">
+              </div>
+              <div class="editorial-details">
+                <span class="badge badge-orange">MODULE 02 · ROUTE-LEVEL AIRFARE MOVEMENT & DIRECTORY</span>
+                <h3>Domestic Route Directory & Corridor Intelligence</h3>
+                <p>Granular corridor-level price tracking covering major metro pairs (DEL-BOM, BLR-DEL, BOM-GOI, DEL-CCU) with 30-day fare movements, NSSO travel profiles, lead carrier shares, and volatility spreads.</p>
+                <ul class="callout-list">
+                  <li class="callout-item">
+                    <span>✈️</span>
+                    <div><b>Corridor Weighting:</b> Weighted by DGCA quarterly passenger traffic volumes (e.g. DEL-BOM 9.2% share).</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>🔍</span>
+                    <div><b>Carrier Comparison:</b> Real-time fare differentials across IndiGo, Air India, SpiceJet, and Akasa.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>🗺️</span>
+                    <div><b>Corridor Volatility:</b> Color-coded volatility bars tracking 7-day delta and route index trends.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 3: Lead-Time Yield Curves (2nd Image) -->
+          <div class="system-pane" id="pane-leadtime">
+            <div class="gallery-editorial-card">
+              <div class="editorial-img-wrap" data-zoomable data-zoom-src="/assets/lead_time_dark.png" data-zoom-caption="03 · Lead-Time Yield Curves — Price Escalation Velocity Curve">
+                <img src="/assets/lead_time_dark.png" alt="Lead-Time Yield Curve Analysis — Price Escalation Velocity" loading="lazy">
+              </div>
+              <div class="editorial-details">
+                <span class="badge badge-blue">MODULE 03 · LEAD-TIME YIELD CURVES</span>
+                <h3>Price Escalation Velocity Curve (30 Days Out)</h3>
+                <p>Aviation ticket pricing is deeply non-linear. VayuSuchak separates observations into fixed lead-time windows (0-24 hrs, 2-7 days, 8-15 days, 16-30+ days) across carriers (Air India, Akasa Air, IndiGo) to avoid mixing last-minute emergency fares with advance bookings.</p>
+                <ul class="callout-list">
+                  <li class="callout-item">
+                    <span>📅</span>
+                    <div><b>Standardized Horizons:</b> 0-24 Hours (₹11,250), 2-7 Days (₹6,950), 8-15 Days (₹5,450), 16-30+ Days (₹4,350 baseline).</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>📈</span>
+                    <div><b>Yield Curve Modeling:</b> Empirical calculation of price acceleration curves approaching departure.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>⚖️</span>
+                    <div><b>Inflation Policy Note:</b> Separates short-term capacity pinches from structural baseline inflation signals.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 4: Statistical Anomaly (3rd Image) -->
+          <div class="system-pane" id="pane-anomalies">
+            <div class="gallery-editorial-card">
+              <div class="editorial-img-wrap" data-zoomable data-zoom-src="/assets/anomalies_dark.png" data-zoom-caption="04 · Statistical Anomaly — Flagged Fare Observations Registry">
+                <img src="/assets/anomalies_dark.png" alt="Statistical Anomaly Console — Flagged Fare Observations Registry" loading="lazy">
+              </div>
+              <div class="editorial-details">
+                <span class="badge badge-orange">MODULE 04 · STATISTICAL ANOMALY</span>
+                <h3>Flagged Fare Observations Registry & Adjudication</h3>
+                <p>Sudden extreme spikes, promotional zero-base fares, or scraper anomalies are quarantined without silent deletion. Flagged quotes undergo statistical fences (Modified Z-Score, IQR, Scrape Noise) with transparent review.</p>
+                <ul class="callout-list">
+                  <li class="callout-item">
+                    <span>🎯</span>
+                    <div><b>Tri-Method Scoring:</b> Flagged deviations (+3.84σ, +3.42σ, -2.95σ) categorized by severity (High, Medium).</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>📋</span>
+                    <div><b>Review Evidence:</b> Officers inspect peer comparisons before DB commitment or Winsorization.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>👤</span>
+                    <div><b>Triage Breakdown:</b> Pending Review (2), Validated Outliers (1), Rejected Scrape Noise (1), Resolved Natural (1).</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 5: Dashboard (Renamed from Live System Overview) -->
+          <div class="system-pane" id="pane-dashboard">
+            <div class="gallery-editorial-card">
+              <div class="editorial-img-wrap" data-zoomable data-zoom-src="/assets/dashboard_dual.png" data-zoom-caption="05 · VayuSuchak Dashboard — Light & Dark Modes">
+                <img src="/assets/dashboard_dual.png" alt="VayuSuchak Command Dashboard" loading="lazy">
+              </div>
+              <div class="editorial-details">
+                <span class="badge badge-green">MODULE 05 · DASHBOARD</span>
+                <h3>VayuSuchak Command Dashboard</h3>
+                <p>Comprehensive operational dashboard providing high-frequency airfare intelligence, national index values (128.45 pts), domestic city-pair monitoring (1,248 pairs), live ingestion stats (184,520 observations), and open price anomaly tracking.</p>
+                <ul class="callout-list">
+                  <li class="callout-item">
+                    <span>🔄</span>
+                    <div><b>Live OTA Feed:</b> Real-time ingestion counter tracking 184,520+ quotes across scheduled corridors.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>🌓</span>
+                    <div><b>Dual Theme Architecture:</b> Optimized for both high-contrast Light mode and sleek Dark mode operations.</div>
+                  </li>
+                  <li class="callout-item">
+                    <span>📑</span>
+                    <div><b>MoSPI Press Export:</b> Pre-formatted exports matching official MoSPI CPI Annexures I-IV.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 03: THE PROBLEM
+         ========================================================================== -->
+    <section class="board" id="problem">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">03</span>
+          <span class="name">THE PROBLEM</span>
+          <span class="fill"></span>
+          <span class="tag">SIH PROBLEM STATEMENT · SIH26056</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">THE ECONOMIC CHALLENGE</span>
+          <h2>DYNAMIC AIRFARES DEFIE TRADITIONAL INFLATION MEASUREMENT</h2>
+          <p class="lead">Airfare prices are highly volatile and change dynamically based on route demand, booking lead time, airline yield algorithms, and unbundled taxes. Traditional periodic collection cannot capture the true cost of flight travel.</p>
+        </div>
+
+        <div class="problem-statement-banner">
+          <div class="problem-statement-text">
+            "The challenge in modern price measurement is not simply collecting airfare prices. The true challenge is <b>collecting, standardizing, validating, weighting, measuring, and explaining</b> those price movements at national scale with audit-ready statistical rigor."
+          </div>
+          <div class="pipeline-linear-strip">
+            <span class="linear-step">01 Collecting</span>
+            <span class="linear-arrow">→</span>
+            <span class="linear-step">02 Standardizing</span>
+            <span class="linear-arrow">→</span>
+            <span class="linear-step">03 Validating</span>
+            <span class="linear-arrow">→</span>
+            <span class="linear-step">04 Weighting</span>
+            <span class="linear-arrow">→</span>
+            <span class="linear-step">05 Measuring</span>
+            <span class="linear-arrow">→</span>
+            <span class="linear-step">06 Explaining</span>
+          </div>
+        </div>
+
+        <div class="problem-card-grid">
+          <!-- 01 -->
+          <div class="problem-card">
+            <div class="problem-num">01</div>
+            <h3 class="problem-title">Dynamic Fares</h3>
+            <p class="problem-desc">Airlines alter prices continuously using algorithmic revenue management based on seat availability, competitor moves, and real-time passenger demand.</p>
+          </div>
+
+          <!-- 02 -->
+          <div class="problem-card">
+            <div class="problem-num">02</div>
+            <h3 class="problem-title">High-Frequency Observation</h3>
+            <p class="problem-desc">Periodic monthly or fortnightly spot quotations miss intra-month surges, festival price spikes, and rapid corridor-specific fare resets.</p>
+          </div>
+
+          <!-- 03 -->
+          <div class="problem-card">
+            <div class="problem-num">03</div>
+            <h3 class="problem-title">Multiple Fare Components</h3>
+            <p class="problem-desc">Quoted prices blend base fares, user development fees (UDF), passenger service fees (PSF), fuel surcharges, and GST, requiring consistent decomposition.</p>
+          </div>
+
+          <!-- 04 -->
+          <div class="problem-card">
+            <div class="problem-num">04</div>
+            <h3 class="problem-title">Lead-Time Effect</h3>
+            <p class="problem-desc">A ticket purchased 30 days prior costs drastically less than one bought on departure day. Mixing booking horizons corrupts index comparability over time.</p>
+          </div>
+
+          <!-- 05 -->
+          <div class="problem-card">
+            <div class="problem-num">05</div>
+            <h3 class="problem-title">Data Quality & Noise</h3>
+            <p class="problem-desc">OTA promotional discounts, glitch fares, and scraper drops create noisy outliers that must be vetted with non-destructive statistical fences.</p>
+          </div>
+
+          <!-- 06 -->
+          <div class="problem-card">
+            <div class="problem-num">06</div>
+            <h3 class="problem-title">Limited Explainability</h3>
+            <p class="problem-desc">Statistical indices cannot be black boxes. A shift in the national transport index must be fully traceable to specific routes, carriers, and lead-time buckets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 04: THE SOLUTION
+         ========================================================================== -->
+    <section class="board" id="solution">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">04</span>
+          <span class="name">THE SOLUTION</span>
+          <span class="fill"></span>
+          <span class="tag">END-TO-END PIPELINE</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">VAYUSUCHAK SYSTEM SOLUTION</span>
+          <h2>TURNING RAW FARE QUOTES INTO EXPLAINABLE PRICE INTELLIGENCE</h2>
+          <p class="lead">VayuSuchak delivers an automated, transparent, and auditable pipeline that turns volatile airfare observations into calibrated price indices engineered for high-frequency CPI transport augmentation.</p>
+        </div>
+
+        <div class="hero-card" style="padding: 32px 36px;">
+          <div class="lbl lbl-orange" style="margin-bottom: 8px;">CENTRAL PIPELINE ARCHITECTURE</div>
+          <div class="pipeline-flow" style="grid-template-columns: repeat(3, 1fr); margin-top: 16px;">
+            <div class="pipeline-step">
+              <span class="step-num">INGESTION</span>
+              <div class="step-name">Airline & OTA Sources</div>
+              <div class="step-desc">Automated scrapers via Playwright and HTTPX polling MakeMyTrip, EaseMyTrip, and IndiGo Direct.</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">NORMALIZATION</span>
+              <div class="step-name">Cleaning & Breakdown</div>
+              <div class="step-desc">Extracts base fare, taxes, and fees, categorizing each quote into fixed lead-time windows (T-0 to T-30+).</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">TRIAGE</span>
+              <div class="step-name">Anomaly & Validation</div>
+              <div class="step-desc">Modified Z-Score, IQR, and MAD fences filter suspicious quotes without silent data loss.</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">COMPUTATION</span>
+              <div class="step-name">Statistical Index Engine</div>
+              <div class="step-desc">Elementary indices (Jevons, Dutot) combined into national superlative Fisher Ideal & Laspeyres indices.</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">WEIGHTING</span>
+              <div class="step-name">Passenger Volume Weights</div>
+              <div class="step-desc">Calibrated with official DGCA city-pair quarterly traffic reports and NSSO Table 7 expenditure shares.</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">OUTPUT</span>
+              <div class="step-name">CPI Augmentation & Press</div>
+              <div class="step-desc">Pre-formatted exports matching official MoSPI CPI Press Release Annexures with SHA-256 audit lineage.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 05: HOW VAYUSUCHAK WORKS (TECHNICAL ARCHITECTURE)
+         ========================================================================== -->
+    <section class="board" id="architecture">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">05</span>
+          <span class="name">ARCHITECTURE</span>
+          <span class="fill"></span>
+          <span class="tag">VERIFIED REPOSITORY STACK</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">TECHNICAL IMPLEMENTATION</span>
+          <h2>FULL-STACK ARCHITECTURE SPECIFICATION</h2>
+          <p class="lead">Faithful to the actual VayuSuchak codebase: built with lightweight Python 3.12, FastAPI, SQLite 3, and React 19. Deterministic, local-first, and free from bloated cloud dependencies.</p>
+        </div>
+
+        <div class="arch-container">
+          <div class="arch-layers">
+            <!-- Layer 1: Sources -->
+            <div class="arch-layer-card">
+              <div class="arch-layer-label">
+                <span class="arch-layer-num">LAYER 01</span>
+                <span class="arch-layer-title">Data Sources</span>
+              </div>
+              <div class="arch-layer-body">
+                <div class="arch-layer-desc">Dynamic aggregators and direct carrier flight schedules tracking metro and regional UDAN corridors.</div>
+                <div class="arch-tech-tags">
+                  <span class="tech-tag">MakeMyTrip Adapter</span>
+                  <span class="tech-tag">EaseMyTrip Adapter</span>
+                  <span class="tech-tag">IndiGo Direct API</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-connector">↓ Playwright Headless & HTTPX Extraction ↓</div>
+
+            <!-- Layer 2: Scraping Engine -->
+            <div class="arch-layer-card">
+              <div class="arch-layer-label">
+                <span class="arch-layer-num">LAYER 02</span>
+                <span class="arch-layer-title">Scraper Pipeline</span>
+              </div>
+              <div class="arch-layer-body">
+                <div class="arch-layer-desc">Multi-adapter asynchronous scrapers configured for departure horizons from T-0 to T-30+ days.</div>
+                <div class="arch-tech-tags">
+                  <span class="tech-tag">Playwright</span>
+                  <span class="tech-tag">Chromium Headless</span>
+                  <span class="tech-tag">HTTPX Async</span>
+                  <span class="tech-tag">BeautifulSoup4</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-connector">↓ Async JSON Ingestion Payload ↓</div>
+
+            <!-- Layer 3: Backend Core -->
+            <div class="arch-layer-card">
+              <div class="arch-layer-label">
+                <span class="arch-layer-num">LAYER 03</span>
+                <span class="arch-layer-title">Backend Core</span>
+              </div>
+              <div class="arch-layer-body">
+                <div class="arch-layer-desc">High-throughput ASGI REST service orchestrating scheduled extraction and computation cycles.</div>
+                <div class="arch-tech-tags">
+                  <span class="tech-tag">Python 3.12</span>
+                  <span class="tech-tag">FastAPI</span>
+                  <span class="tech-tag">Uvicorn ASGI</span>
+                  <span class="tech-tag">APScheduler</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-connector">↓ Vectorized Mathematical Processing ↓</div>
+
+            <!-- Layer 4: Analytics & Processing -->
+            <div class="arch-layer-card">
+              <div class="arch-layer-label">
+                <span class="arch-layer-num">LAYER 04</span>
+                <span class="arch-layer-title">Analytics Engine</span>
+              </div>
+              <div class="arch-layer-body">
+                <div class="arch-layer-desc">Numeric libraries executing elementary and superlative index formulations and anomaly fences.</div>
+                <div class="arch-tech-tags">
+                  <span class="tech-tag">NumPy</span>
+                  <span class="tech-tag">Pandas</span>
+                  <span class="tech-tag">SciPy</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-connector">↓ ACID Relational Persistence ↓</div>
+
+            <!-- Layer 5: Database -->
+            <div class="arch-layer-card">
+              <div class="arch-layer-label">
+                <span class="arch-layer-num">LAYER 05</span>
+                <span class="arch-layer-title">Database Storage</span>
+              </div>
+              <div class="arch-layer-body">
+                <div class="arch-layer-desc">ACID compliant local relational storage housing price observations, route tables, and SHA-256 audit logs.</div>
+                <div class="arch-tech-tags">
+                  <span class="tech-tag">SQLite 3 (airfare_intelligence.db)</span>
+                  <span class="tech-tag">SQLAlchemy ORM</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-connector">↓ REST API Endpoints (/api/v1) ↓</div>
+
+            <!-- Layer 6: Frontend Dashboard -->
+            <div class="arch-layer-card">
+              <div class="arch-layer-label">
+                <span class="arch-layer-num">LAYER 06</span>
+                <span class="arch-layer-title">VayuSuchak UI</span>
+              </div>
+              <div class="arch-layer-body">
+                <div class="arch-layer-desc">Interactive analytical dashboard featuring national trends, corridor heatmaps, and audit explorer.</div>
+                <div class="arch-tech-tags">
+                  <span class="tech-tag">React 19</span>
+                  <span class="tech-tag">TypeScript</span>
+                  <span class="tech-tag">Vite</span>
+                  <span class="tech-tag">Tailwind CSS</span>
+                  <span class="tech-tag">Recharts</span>
+                  <span class="tech-tag">Lucide</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 06: FROM RAW FARES TO PRICE INTELLIGENCE (STATISTICAL ENGINE)
+         ========================================================================== -->
+    <section class="board" id="statistical">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">06</span>
+          <span class="name">STATISTICAL ENGINE</span>
+          <span class="fill"></span>
+          <span class="tag">MATHEMATICALLY SOUND & AUDITABLE</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">ECONOMETRIC METHODOLOGY</span>
+          <h2>FROM RAW FARES TO PRICE INTELLIGENCE</h2>
+          <p class="lead">VayuSuchak implements internationally accepted price index formulations recommended by the ILO and UN Consumer Price Index manuals. Every formula is transparent, deterministic, and fully reproducible.</p>
+        </div>
+
+        <div class="formula-grid">
+          <!-- Jevons -->
+          <div class="formula-card">
+            <h3 class="formula-name">Jevons</h3>
+            <span class="formula-badge">Geometric Mean</span>
+            <div class="formula-equation-box">
+              P<sub>J</sub> = ∏ (p<sub>i</sub><sup>t</sup> / p<sub>i</sub><sup>0</sup>)<sup>1/n</sup>
+            </div>
+            <p class="formula-desc">Elementary aggregation formula satisfying time-reversal and circularity tests. Immune to unequal price scale bias.</p>
+          </div>
+
+          <!-- Dutot -->
+          <div class="formula-card">
+            <h3 class="formula-name">Dutot</h3>
+            <span class="formula-badge">Ratio of Averages</span>
+            <div class="formula-equation-box">
+              P<sub>D</sub> = (∑ p<sub>i</sub><sup>t</sup> / n) / (∑ p<sub>i</sub><sup>0</sup> / n)
+            </div>
+            <p class="formula-desc">Computes the ratio of unweighted arithmetic mean prices between the current and base periods for homogeneous fare classes.</p>
+          </div>
+
+          <!-- Laspeyres -->
+          <div class="formula-card">
+            <h3 class="formula-name">Laspeyres</h3>
+            <span class="formula-badge">Base-Weighted</span>
+            <div class="formula-equation-box">
+              P<sub>L</sub> = (∑ p<sub>i</sub><sup>t</sup> q<sub>i</sub><sup>0</sup>) / (∑ p<sub>i</sub><sup>0</sup> q<sub>i</sub><sup>0</sup>)
+            </div>
+            <p class="formula-desc">Base-period passenger volume expenditure index. Measures the change in cost of purchasing the base flight basket.</p>
+          </div>
+
+          <!-- Fisher Ideal -->
+          <div class="formula-card">
+            <h3 class="formula-name">Fisher Ideal</h3>
+            <span class="formula-badge">Superlative Index</span>
+            <div class="formula-equation-box">
+              P<sub>F</sub> = √(P<sub>L</sub> × P<sub>P</sub>)
+            </div>
+            <p class="formula-desc">Geometric mean of Laspeyres and Paasche indices. Eliminates substitution bias and satisfies both factor and time reversal tests.</p>
+          </div>
+        </div>
+
+        <!-- Passenger Weighting Subsection -->
+        <div class="weighting-box">
+          <div class="weighting-grid">
+            <div>
+              <span class="lbl lbl-orange">PASSENGER WEIGHTING FRAMEWORK</span>
+              <h3 style="font-size: 24px; color: var(--navy); margin: 6px 0 10px;">FROM ROUTE PRICES TO NATIONAL MOVEMENT</h3>
+              <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-2);">
+                Raw route prices cannot simply be averaged linearly. A 10% price increase on a major trunk route like Delhi–Mumbai impacts far more citizens than an identical percentage increase on a low-traffic regional corridor.
+              </p>
+              <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--blue-deep); background: var(--surface-2); padding: 10px 14px; border-radius: var(--r-sm); border: 1px solid var(--line);">
+                ROUTE FARES + PASSENGER VOLUME WEIGHTS → WEIGHTED CORRIDOR CONTRIBUTIONS → NATIONAL AIRFARE INDEX
+              </div>
+            </div>
+            <div style="background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px;">
+              <div class="lbl lbl-blue" style="margin-bottom: 8px;">CALIBRATION DATA SOURCES</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px;">
+                <li style="display: flex; gap: 8px;">
+                  <b>1. DGCA City-Pair Traffic:</b> Calibrated using Directorate General of Civil Aviation quarterly scheduled domestic passenger volumes.
+                </li>
+                <li style="display: flex; gap: 8px;">
+                  <b>2. NSSO Table 7 Shares:</b> Aligned with National Sample Survey Office household consumer expenditure shares for transport.
+                </li>
+                <li style="display: flex; gap: 8px;">
+                  <b>3. Non-Destructive Weight Updates:</b> Dynamic re-weighting cycles with full audit trail in the database.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 07: LEAD-TIME INTELLIGENCE
+         ========================================================================== -->
+    <section class="board" id="leadtime">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">07</span>
+          <span class="name">LEAD-TIME INTELLIGENCE</span>
+          <span class="fill"></span>
+          <span class="tag">DYNAMIC YIELD HORIZONS</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">TEMPORAL PRICE DISPERSION</span>
+          <h2>PRICE CHANGES WITH TIME: BOOKING HORIZON DYNAMICS</h2>
+          <p class="lead">Airfare tickets follow steep yield curves. To ensure statistical integrity, VayuSuchak separates price observations across distinct booking lead-time windows rather than blending unlike quotes.</p>
+        </div>
+
+        <div class="lead-time-box">
+          <div class="lbl lbl-orange">STANDARDIZED DEPARTURE TIMELINE</div>
+          <div class="timeline-track">
+            <!-- T-30+ -->
+            <div class="timeline-step">
+              <span class="timeline-tag">WINDOW 01</span>
+              <div class="timeline-window">T-30+ Days</div>
+              <div class="timeline-desc">Advance booking horizon. Captures baseline promotional fares, early business planning, and price stability before yield escalation.</div>
+            </div>
+
+            <!-- T-15 -->
+            <div class="timeline-step">
+              <span class="timeline-tag">WINDOW 02</span>
+              <div class="timeline-window">T-15 Days</div>
+              <div class="timeline-desc">Mid-range booking horizon. Initial fare tier adjustments as low-fare booking buckets deplete and leisure demand stabilizes.</div>
+            </div>
+
+            <!-- T-7 -->
+            <div class="timeline-step">
+              <span class="timeline-tag">WINDOW 03</span>
+              <div class="timeline-window">T-7 Days</div>
+              <div class="timeline-desc">Tactical travel horizon. Sharp yield curve inflections driven by business travel demand and dynamic revenue management algorithms.</div>
+            </div>
+
+            <!-- T-0 -->
+            <div class="timeline-step">
+              <span class="timeline-tag">WINDOW 04</span>
+              <div class="timeline-window">T-0 Days</div>
+              <div class="timeline-desc">Same-day departure. Captures emergency, last-minute travel pricing, reflecting peak surge pricing and remaining seat scarcity.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 08 & 09: ANOMALY DETECTION & AUDITABILITY
+         ========================================================================== -->
+    <section class="board" id="anomaly-audit">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">08 & 09</span>
+          <span class="name">VALIDATION & AUDITABILITY</span>
+          <span class="fill"></span>
+          <span class="tag">CRYPTO TRACEABILITY</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">DATA GOVERNANCE</span>
+          <h2>TRIAGE INTEGRITY & CRYPTOGRAPHIC TRACEABILITY</h2>
+          <p class="lead">High-frequency web data requires robust statistical validation. VayuSuchak isolates anomalies non-destructively and hashes every calculation into an append-only audit trail.</p>
+        </div>
+
+        <div class="split-feature-grid">
+          <!-- Anomaly Detection Block -->
+          <div class="feature-block">
+            <span class="lbl lbl-orange">NON-DESTRUCTIVE STATISTICAL TRIAGE</span>
+            <h3>When a Price Looks Unusual</h3>
+            <p class="feature-desc">Suspect fares are never silently discarded. They undergo automated statistical scoring and remain quarantined for officer review before index inclusion.</p>
+            
+            <div class="method-pills">
+              <div class="method-pill">
+                <span class="code">MODIFIED Z-SCORE</span>
+                <div>
+                  <b style="color: var(--navy); font-size: 13.5px;">Median Absolute Deviation (MAD)</b>
+                  <div style="font-size: 12.5px; color: var(--ink-2); margin-top: 2px;">Calculates robust deviation M<sub>i</sub> = 0.6745(x<sub>i</sub> - x̃) / MAD. Immune to extreme skew.</div>
+                </div>
+              </div>
+
+              <div class="method-pill">
+                <span class="code">IQR FENCES</span>
+                <div>
+                  <b style="color: var(--navy); font-size: 13.5px;">Tukey Interquartile Range</b>
+                  <div style="font-size: 12.5px; color: var(--ink-2); margin-top: 2px;">Quartile fences set at Q1 - 1.5×IQR and Q3 + 1.5×IQR to flag abnormal promotional or surge fares.</div>
+                </div>
+              </div>
+
+              <div class="method-pill">
+                <span class="code">PERCENTILE FENCES</span>
+                <div>
+                  <b style="color: var(--navy); font-size: 13.5px;">Corridor Historical Bounds</b>
+                  <div style="font-size: 12.5px; color: var(--ink-2); margin-top: 2px;">Route-specific historical 5th and 95th percentiles calibrated against fuel and operational baselines.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Auditability Block -->
+          <div class="feature-block">
+            <span class="lbl lbl-blue">SHA-256 AUDIT LINEAGE</span>
+            <h3>Every Number Has a Trace</h3>
+            <p class="feature-desc">Designed so that every index value presented to statistical reviewers can be mathematically proven back to its constituent source quotes.</p>
+
+            <div class="audit-trail-visual">
+              <div class="audit-row">
+                <span>01. Source Raw Quote</span>
+                <span class="audit-hash">SHA256: 7f83b165...</span>
+              </div>
+              <div class="audit-row">
+                <span>02. Fare Normalization Pass</span>
+                <span class="audit-hash">SHA256: 9b2d84a1...</span>
+              </div>
+              <div class="audit-row">
+                <span>03. Anomaly Adjudication</span>
+                <span class="audit-hash">SHA256: 3c5e718f...</span>
+              </div>
+              <div class="audit-row">
+                <span>04. DGCA Weight Application</span>
+                <span class="audit-hash">SHA256: 12af4e90...</span>
+              </div>
+              <div class="audit-row">
+                <span>05. Fisher Ideal Output</span>
+                <span class="audit-hash">SHA256: d84c9b3a...</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 18px; display: flex; align-items: center; justify-content: space-between;">
+              <span class="badge badge-blue">IMMUTABLE APPEND-ONLY SQLITE</span>
+              <button class="btn-outline copy-hash-btn" data-hash="d84c9b3a165b4f8812af4e907f83b1659b2d84a13c5e718f09" style="padding: 6px 12px; font-size: 10px;">
+                Copy Sample Hash
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 10: INNOVATION CARDS (8 CARDS)
+         ========================================================================== -->
+    <section class="board" id="innovation">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">10</span>
+          <span class="name">WHAT MAKES US DIFFERENT</span>
+          <span class="fill"></span>
+          <span class="tag">08 CORE INNOVATIONS</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">DISTINCTIVE VALUE PROPOSITION</span>
+          <h2>ENGINEERED SPECIFICALLY FOR STATISTICAL INTEGRITY</h2>
+          <p class="lead">VayuSuchak is neither a consumer flight search engine nor a toy project. It is purpose-built to address the exact technical hurdles of official economic measurement.</p>
+        </div>
+
+        <div class="innovation-grid">
+          <!-- 01 -->
+          <div class="innovation-card">
+            <span class="innov-num">01</span>
+            <h3 class="innov-title">India-Specific Airfare Index</h3>
+            <p class="innov-desc">Calibrated directly for the Indian domestic aviation ecosystem, accounting for UDAN routes, metro trunks, and local tax schedules.</p>
+          </div>
+
+          <!-- 02 -->
+          <div class="innovation-card">
+            <span class="innov-num">02</span>
+            <h3 class="innov-title">Multi-Method Statistical Engine</h3>
+            <p class="innov-desc">Executes Jevons, Dutot, Laspeyres, Paasche, and superlative Fisher Ideal formulas concurrently for cross-methodological validation.</p>
+          </div>
+
+          <!-- 03 -->
+          <div class="innovation-card">
+            <span class="innov-num">03</span>
+            <h3 class="innov-title">Passenger-Volume Weighting</h3>
+            <p class="innov-desc">Routes are dynamically weighted by actual DGCA quarterly passenger numbers and NSSO consumer expenditure surveys.</p>
+          </div>
+
+          <!-- 04 -->
+          <div class="innovation-card">
+            <span class="innov-num">04</span>
+            <h3 class="innov-title">Lead-Time Intelligence</h3>
+            <p class="innov-desc">Separates observations into T-0, T-3, T-7, T-14, and T-30+ booking horizons to prevent yield-curve sampling distortion.</p>
+          </div>
+
+          <!-- 05 -->
+          <div class="innovation-card">
+            <span class="innov-num">05</span>
+            <h3 class="innov-title">Route-to-National Contribution</h3>
+            <p class="innov-desc">Explains exactly which routes, airlines, and booking windows drove any given percentage point shift in the national index.</p>
+          </div>
+
+          <!-- 06 -->
+          <div class="innovation-card">
+            <span class="innov-num">06</span>
+            <h3 class="innov-title">Anomaly & Quality Layer</h3>
+            <p class="innov-desc">Tri-method statistical fences (Modified Z-Score, IQR, MAD) identify anomalous quotes without destroying raw data history.</p>
+          </div>
+
+          <!-- 07 -->
+          <div class="innovation-card">
+            <span class="innov-num">07</span>
+            <h3 class="innov-title">High-Frequency Monitoring</h3>
+            <p class="innov-desc">Automated Playwright and HTTPX background jobs replace labor-intensive manual ticket collection with continuous monitoring.</p>
+          </div>
+
+          <!-- 08 -->
+          <div class="innovation-card">
+            <span class="innov-num">08</span>
+            <h3 class="innov-title">Auditable Cryptographic Lineage</h3>
+            <p class="innov-desc">Every ingestion event, normalization pass, and index run generates a cryptographic SHA-256 hash in SQLite for complete audit defense.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 11: CASE STUDY (MAJOR SECTION)
+         ========================================================================== -->
+    <section class="board" id="casestudy">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">11</span>
+          <span class="name">CASE STUDY</span>
+          <span class="fill"></span>
+          <span class="tag">FROM AIRFARE DATA TO INFLATION INSIGHT</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">AUDITOR PERSPECTIVE & REAL-WORLD CONTEXT</span>
+          <h2>EXAMINING AIRFARE VOLATILITY & STATISTICAL MEASUREMENT</h2>
+          <p class="lead">Understanding the real-world connection between air travel costs, inflation metrics, and the imperative for auditable statistical precision.</p>
+        </div>
+
+        <div class="case-study-split">
+          <!-- Left: Video Showcase Card -->
+          <div class="video-showcase-card">
+            <div class="video-frame-wrap">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/XVw8SdNJzH8?rel=0" 
+                title="Auditor Perspective: Understanding Airfare, Inflation & Statistical Measurement" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-card-body">
+              <span class="video-card-sub">CASE STUDY REFERENCE VIDEO</span>
+              <h3>Auditor Perspective on Inflation & Price Measurement</h3>
+              <p class="video-card-desc">
+                An authoritative discussion highlighting the practical challenges of auditing dynamic price systems, understanding volatile transport indices, and establishing verified data lineage in modern economics.
+              </p>
+              <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                <a href="https://youtu.be/XVw8SdNJzH8?si=653oFl31OEbF6Wkc" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 10px 18px; font-size: 11px;">
+                  Watch on YouTube ↗
+                </a>
+                <span class="lbl lbl-blue">DIRECT CASE STUDY LINK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual Narrative Steps -->
+          <div class="narrative-steps">
+            <div class="narrative-step">
+              <span class="narrative-step-num">01 / THE QUESTION</span>
+              <div class="narrative-step-title">The Real-World Question</div>
+              <div class="narrative-step-desc">How can wildly fluctuating airfare quotes be systematically converted into reliable, explainable statistical intelligence for national transport metrics?</div>
+            </div>
+
+            <div class="narrative-step">
+              <span class="narrative-step-num">02 / THE CHALLENGE</span>
+              <div class="narrative-step-title">The Data Challenge</div>
+              <div class="narrative-step-desc">Ticket prices vary across hundreds of routes, airline carriers, booking lead-time days, and unbundled tax structures, making manual tracking obsolete.</div>
+            </div>
+
+            <div class="narrative-step">
+              <span class="narrative-step-num">03 / THE APPROACH</span>
+              <div class="narrative-step-title">The VayuSuchak Approach</div>
+              <div class="narrative-step-desc">High-frequency automated extraction, transparent fee normalization, lead-time horizon classification, and deterministic statistical aggregation.</div>
+            </div>
+
+            <div class="narrative-step">
+              <span class="narrative-step-num">04 / THE AUDIT LAYER</span>
+              <div class="narrative-step-title">Cryptographic Lineage</div>
+              <div class="narrative-step-desc">Every calculation run can be traced back to its raw scraper quotes using SHA-256 hashing, giving statistical officers and auditors complete confidence.</div>
+            </div>
+
+            <div class="narrative-step">
+              <span class="narrative-step-num">05 / THE OUTCOME</span>
+              <div class="narrative-step-title">Explainable Contribution</div>
+              <div class="narrative-step-desc">Moving from "airfares rose this month" to "Route DEL-BLR at T-7 days contributed +0.32% to the national transport group index."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strict Domain Disclaimer Banner -->
+        <div class="disclaimer-banner">
+          <div class="disclaimer-icon">ℹ️</div>
+          <div class="disclaimer-text">
+            <b>STATISTICAL DOMAIN & POSITIONING NOTICE:</b> VayuSuchak is designed as a technological proof-of-concept for <b>CPI Augmentation</b>, high-frequency statistical monitoring, and auditable airfare measurement for the Smart India Hackathon 2026. The case-study video provides real-world domain context regarding inflation measurement and auditor principles, and is not presented as an official MoSPI government endorsement.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 12: VAYUSUCHAK DASHBOARD CASE STUDY (ANNOTATED SCREENS)
+         ========================================================================== -->
+    <section class="board" id="dashboard-study">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">12</span>
+          <span class="name">DASHBOARD CASE STUDY</span>
+          <span class="fill"></span>
+          <span class="tag">SEE VAYUSUCHAK WORK</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">EVIDENCE-BASED PLATFORM TOUR</span>
+          <h2>ANNOTATED APPLICATION MODULES</h2>
+          <p class="lead">A closer examination of the core operational screens inside the VayuSuchak platform, showing how each component directly fulfills the SIH26056 requirements.</p>
+        </div>
+
+        <div class="annotated-case-study">
+          <!-- Frame 1: Main Dashboard (Dual Theme) -->
+          <div class="annotated-frame">
+            <div class="annotated-header">
+              <span class="annotated-title">01 · VAYUSUCHAK DASHBOARD (LIGHT & DARK THEMES)</span>
+              <span class="badge badge-blue">DUAL THEME COCKPIT</span>
+            </div>
+            <div class="annotated-image-wrap" data-zoomable data-zoom-src="/assets/dashboard_dual.png" data-zoom-caption="VayuSuchak Primary Command Center in Light and Dark Mode UI">
+              <img src="/assets/dashboard_dual.png" alt="VayuSuchak Main Dashboard in Light and Dark Modes" loading="lazy">
+            </div>
+            <div class="annotation-badges-strip">
+              <div class="annotation-badge-cell">
+                <span class="lbl">METRIC 01</span>
+                <b>National Index Line</b>
+                <p>Aggregate price movement computed across all monitored corridors using superlative Fisher Ideal formula.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">METRIC 02</span>
+                <b>Route Monitoring</b>
+                <p>Instant visual alerts highlighting metro routes experiencing sharp upward yield surges.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">METRIC 03</span>
+                <b>Fare Observations</b>
+                <p>Real-time tally of daily quotes successfully ingested, normalized, and stored into SQLite.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">METRIC 04</span>
+                <b>Anomaly Alerts</b>
+                <p>Active count of quotes currently flagged by Modified Z-Score or IQR fences awaiting verification.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 2: Route-Level Airfare Movement & Directory (1st Image) -->
+          <div class="annotated-frame">
+            <div class="annotated-header">
+              <span class="annotated-title">02 · ROUTE-LEVEL AIRFARE MOVEMENT & DIRECTORY</span>
+              <span class="badge badge-orange">CORRIDOR INTELLIGENCE</span>
+            </div>
+            <div class="annotated-image-wrap" data-zoomable data-zoom-src="/assets/route_directory_dark.png" data-zoom-caption="02 · Route-Level Airfare Movement & Directory">
+              <img src="/assets/route_directory_dark.png" alt="Route-Level Airfare Movement and Directory" loading="lazy">
+            </div>
+            <div class="annotation-badges-strip">
+              <div class="annotation-badge-cell">
+                <span class="lbl">FEATURE 01</span>
+                <b>City-Pair Matrix</b>
+                <p>Comprehensive tracking of high-density corridors (DEL–BOM, BLR–DEL, BOM–GOI, DEL–CCU).</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">FEATURE 02</span>
+                <b>30-Day Movement</b>
+                <p>Corridor index trends and historical fare curves (e.g. ₹5,800 to ₹6,480 on DEL–BOM).</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">FEATURE 03</span>
+                <b>NSSO Travel Profile</b>
+                <p>Calibrated against NSSO Table 7 urban expenditure shares with corporate/leisure classifications.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">FEATURE 04</span>
+                <b>DGCA Basket Weight</b>
+                <p>Dynamic passenger volume weights reflecting true economic impact (e.g. 9.2% DEL–BOM share).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 3: Lead-Time Yield Curves (2nd Image) -->
+          <div class="annotated-frame">
+            <div class="annotated-header">
+              <span class="annotated-title">03 · LEAD-TIME YIELD CURVES</span>
+              <span class="badge badge-blue">YIELD DYNAMICS</span>
+            </div>
+            <div class="annotated-image-wrap" data-zoomable data-zoom-src="/assets/lead_time_dark.png" data-zoom-caption="03 · Lead-Time Yield Curves — Price Escalation Velocity Curve">
+              <img src="/assets/lead_time_dark.png" alt="Price Escalation Velocity Curve Across Booking Horizons" loading="lazy">
+            </div>
+            <div class="annotation-badges-strip">
+              <div class="annotation-badge-cell">
+                <span class="lbl">HORIZON 01</span>
+                <b>0 - 24 Hours (T-0)</b>
+                <p>Departure day emergency pricing (₹11,250 avg, 2.58x vs T-30+ baseline, 18% of observations).</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">HORIZON 02</span>
+                <b>2 - 7 Days (T-7)</b>
+                <p>Tactical business booking horizon (₹6,950 avg, 1.60x vs baseline, 31% volume).</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">HORIZON 03</span>
+                <b>8 - 15 Days (T-15)</b>
+                <p>Planned travel window (₹5,450 avg, 1.25x vs baseline, 27% volume).</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">HORIZON 04</span>
+                <b>16 - 30+ Days (T-30+)</b>
+                <p>Advance booking baseline (₹4,350 baseline, 1.00x, 24% volume across carriers).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 4: Statistical Anomaly (3rd Image) -->
+          <div class="annotated-frame">
+            <div class="annotated-header">
+              <span class="annotated-title">04 · STATISTICAL ANOMALY</span>
+              <span class="badge badge-orange">TRIAGE & DATA QUALITY</span>
+            </div>
+            <div class="annotated-image-wrap" data-zoomable data-zoom-src="/assets/anomalies_dark.png" data-zoom-caption="04 · Statistical Anomaly — Flagged Fare Observations Registry">
+              <img src="/assets/anomalies_dark.png" alt="Flagged Fare Observations Registry and Adjudication" loading="lazy">
+            </div>
+            <div class="annotation-badges-strip">
+              <div class="annotation-badge-cell">
+                <span class="lbl">TRIAGE STATUS</span>
+                <b>Pending Officer Sign-off</b>
+                <p>Quarantined outlier quotes awaiting human-in-the-loop review before index inclusion.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">SCORE METRIC</span>
+                <b>Modified Z-Score Fences</b>
+                <p>Automated deviation scoring (+3.84σ, +3.42σ, -2.95σ) with expected price bands.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">ACTION 01</span>
+                <b>Peer Evidence Review</b>
+                <p>One-click peer quote inspection across competing airlines for the same travel date.</p>
+              </div>
+              <div class="annotation-badge-cell">
+                <span class="lbl">ACTION 02</span>
+                <b>Resolution Lineage</b>
+                <p>Every adjudication (Validated, Rejected Scrape Noise, Natural) hashed into SQLite audit trail.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 13: IMPACT
+         ========================================================================== -->
+    <section class="board" id="impact">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">13</span>
+          <span class="name">IMPACT</span>
+          <span class="fill"></span>
+          <span class="tag">STATISTICAL EXCELLENCE</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">MEASURABLE VALUE FOR STATISTICAL BODIES</span>
+          <h2>FROM AIRFARE DATA TO BETTER INSIGHT</h2>
+          <p class="lead">How VayuSuchak delivers concrete value to statistical officers, economic policy analysts, and national price monitoring divisions.</p>
+        </div>
+
+        <div class="impact-grid">
+          <!-- Impact 01 -->
+          <div class="impact-card">
+            <div class="impact-num">01</div>
+            <h3 class="impact-title">High-Frequency Monitoring</h3>
+            <p class="impact-desc">Transitions airfare measurement from intermittent manual inquiries to continuous sub-daily observation, capturing real-time price volatility and holiday surges.</p>
+          </div>
+
+          <!-- Impact 02 -->
+          <div class="impact-card">
+            <div class="impact-num">02</div>
+            <h3 class="impact-title">Explainable Analysis</h3>
+            <p class="impact-desc">Enables economists to decompose national transport price index changes down to exact corridors, booking lead times, carrier pricing, and tax component shifts.</p>
+          </div>
+
+          <!-- Impact 03 -->
+          <div class="impact-card">
+            <div class="impact-num">03</div>
+            <h3 class="impact-title">CPI Augmentation</h3>
+            <p class="impact-desc">Provides a calibrated, auditable airfare intelligence stream designed to augment the transport group in the Consumer Price Index without compromising baseline rigor.</p>
+          </div>
+        </div>
+
+        <!-- Impact Story Pipeline -->
+        <div class="hero-story-strip" style="margin-top: var(--s4);">
+          <div class="lbl lbl-orange" style="margin-bottom: 8px; text-align: center;">THE TRANSFORMATION CYCLE</div>
+          <div class="pipeline-linear-strip" style="background: var(--surface-2); color: var(--navy); border: 1px solid var(--line);">
+            <span class="linear-step">Raw Airfare Data</span>
+            <span class="linear-arrow" style="color: var(--blue);">→</span>
+            <span class="linear-step">Structured Observations</span>
+            <span class="linear-arrow" style="color: var(--blue);">→</span>
+            <span class="linear-step">Statistical Index</span>
+            <span class="linear-arrow" style="color: var(--blue);">→</span>
+            <span class="linear-step">Route Contribution</span>
+            <span class="linear-arrow" style="color: var(--blue);">→</span>
+            <span class="linear-step">Inflation Insight</span>
+            <span class="linear-arrow" style="color: var(--blue);">→</span>
+            <span class="linear-step" style="color: var(--orange); font-weight: 700;">CPI Augmentation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 14: TECHNOLOGY STACK
+         ========================================================================== -->
+    <section class="board" id="techstack">
+      <div class="wrap">
+        <div class="secmark">
+          <span class="num">14</span>
+          <span class="name">TECHNOLOGY STACK</span>
+          <span class="fill"></span>
+          <span class="tag">HONEST ENGINEERING ARSENAL</span>
+        </div>
+
+        <div class="board-head">
+          <span class="subhead">VERIFIED TOOLS & LIBRARIES</span>
+          <h2>BUILT WITH PRECISION</h2>
+          <p class="lead">Every technology listed below is actively utilized in the VayuSuchak codebase. No fictitious cloud architectures or exaggerated claims.</p>
+        </div>
+
+        <div class="tech-strip-container">
+          <div class="tech-group-grid">
+            <!-- Group 1: Frontend -->
+            <div class="tech-group">
+              <span class="tech-group-head">Frontend Stack</span>
+              <div class="tech-items-list">
+                <div class="tech-item">React 19 <span>v19.2.8</span></div>
+                <div class="tech-item">TypeScript <span>v5.x</span></div>
+                <div class="tech-item">Vite <span>v6.x</span></div>
+                <div class="tech-item">Tailwind CSS <span>v4.x</span></div>
+                <div class="tech-item">Recharts <span>Data Viz</span></div>
+                <div class="tech-item">Lucide React <span>Icons</span></div>
+              </div>
+            </div>
+
+            <!-- Group 2: Backend -->
+            <div class="tech-group">
+              <span class="tech-group-head">Backend Service</span>
+              <div class="tech-items-list">
+                <div class="tech-item">Python <span>v3.12</span></div>
+                <div class="tech-item">FastAPI <span>REST API</span></div>
+                <div class="tech-item">Uvicorn <span>ASGI Server</span></div>
+                <div class="tech-item">APScheduler <span>Cron Engine</span></div>
+                <div class="tech-item">Pydantic <span>Validation</span></div>
+                <div class="tech-item">ReportLab <span>PDF Gen</span></div>
+              </div>
+            </div>
+
+            <!-- Group 3: Scraping -->
+            <div class="tech-group">
+              <span class="tech-group-head">Scraping Pipeline</span>
+              <div class="tech-items-list">
+                <div class="tech-item">Playwright <span>Automation</span></div>
+                <div class="tech-item">Chromium Headless <span>Browser</span></div>
+                <div class="tech-item">HTTPX <span>Async Client</span></div>
+                <div class="tech-item">BeautifulSoup4 <span>HTML Parser</span></div>
+              </div>
+            </div>
+
+            <!-- Group 4: Analytics & Storage -->
+            <div class="tech-group">
+              <span class="tech-group-head">Math & Storage</span>
+              <div class="tech-items-list">
+                <div class="tech-item">Pandas <span>DataFrames</span></div>
+                <div class="tech-item">NumPy <span>Vectorization</span></div>
+                <div class="tech-item">SciPy <span>Stats Fences</span></div>
+                <div class="tech-item">SQLite 3 <span>ACID Storage</span></div>
+                <div class="tech-item">SQLAlchemy <span>ORM</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 15 & CLOSING: LIVE PROJECT & FOOTER
+         ========================================================================== -->
+    <section class="board" id="live-project">
+      <div class="wrap">
+        <div class="live-project-banner">
+          <div class="banner-left">
+            <span class="badge badge-orange" style="margin-bottom: 12px; color: #FFFFFF; background: rgba(217, 96, 26, 0.6); border-color: rgba(255,255,255,0.2);">
+              STATUS: LIVE & OPERATIONAL
+            </span>
+            <h2>EXPLORE THE REAL VAYUSUCHAK</h2>
+            <p>The product is actively deployed. Reviewers, judges, and evaluation panels can test the live application directly or audit the source code on GitHub.</p>
+          </div>
+          <div class="banner-buttons">
+            <a href="https://air-fare-index-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding: 16px 28px; font-size: 13px;">
+              Open Live Application
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <a href="https://github.com/Arshu168/VayuSuchak" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding: 15px 24px; font-size: 13px; color: #FFFFFF; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);">
+              View Source Code
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">VAYUSUCHAK (वायुसूचक)</div>
+          <div class="lbl lbl-orange" style="margin-bottom: 8px;">Real-Time Airfare Price Index for India</div>
+          <p class="footer-brand-desc">
+            An India-focused airfare intelligence and price measurement system created by team Chill Coders for Smart India Hackathon 2026. Designed to support high-frequency airfare monitoring and CPI augmentation under the Ministry of Statistics and Programme Implementation (MoSPI).
+          </p>
+        </div>
+
+        <div class="footer-meta-block">
+          <div><b>HACKATHON:</b> Smart India Hackathon 2026</div>
+          <div><b>PROBLEM CODE:</b> SIH26056</div>
+          <div><b>THEME:</b> Smart Automation</div>
+          <div><b>MINISTRY:</b> Ministry of Statistics and Programme Implementation</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span><b>TEAM:</b> Chill Coders (6 Members)</span>
+            <img src="/assets/chill_coders_logo.png" alt="Chill Coders Logo" style="height: 18px; width: auto; background: #FFFFFF; padding: 2px 5px; border-radius: 4px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Chill Coders • Smart India Hackathon 2026 • Government of India</div>
+        <div class="footer-links">
+          <a href="https://air-fare-index-phi.vercel.app/" target="_blank" rel="noopener noreferrer">Live Application</a>
+          <span>·</span>
+          <a href="https://github.com/Arshu168/VayuSuchak" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          <span>·</span>
+          <a href="https://youtu.be/XVw8SdNJzH8?si=653oFl31OEbF6Wkc" target="_blank" rel="noopener noreferrer">Case Study Video</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       LIGHTBOX MODAL FOR SCREENSHOTS
+       ========================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Screenshot Lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image preview">×</button>
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
